@@ -1,0 +1,7 @@
+f = open('data/book1.txt')
+contents = f.read()
+f.close()
+new_contents = contents.replace('\n', ' ')
+f = open('data/book1_cleaned.txt', 'w')
+f.write(new_contents)
+f.close()
