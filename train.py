@@ -4,6 +4,7 @@ import torch.nn.functional as F
 import numpy as np
 from collections import Counter
 import os
+import pickle
 from argparse import Namespace
 flags = Namespace(
 train_file='data/book1_cleaned.txt',
@@ -42,6 +43,8 @@ def get_data_from_file(train_file, batch_size, seq_size):
 
     in_text = np.reshape(in_text, (batch_size, -1))
     out_text = np.reshape(out_text, (batch_size, -1))
+    pickle.dump(int_to_vocab, open("int_to_vocab.p", "wb"))
+    pickle.dump(vocab_to_int, open("vocab_to_int.p", "wb"))
     return int_to_vocab, vocab_to_int, n_vocab, in_text, out_text
 
 def get_batch(in_text, out_text, batch_size, seq_size):
